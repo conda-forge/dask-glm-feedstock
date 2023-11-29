@@ -1,6 +1,6 @@
 {% set name = "dask-glm" %}
-{% set version = "0.2.0" %}
-{% set sha256 = "58b86cebf04fe5b9e58092e1c467e32e60d01e11b71fdc628baaa9fc6d1adee5" %}
+{% set version = "0.3.1" %}
+{% set sha256 = "a019113b8b3d169a99e8778e1894709756dc53dc423313958459b5f73bc3db9f" %}
 
 package:
   name: {{ name|lower }}
@@ -13,7 +13,7 @@ source:
 
 build:
   noarch: python
-  number: 1
+  number: 0
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
@@ -24,10 +24,12 @@ requirements:
     - pip
   run:
     - python >=3
+    - cloudpickle >=0.2.2
     - dask
     - setuptools
     - scikit-learn >=0.18
     - scipy >=0.18.1
+    - sparse >=0.7.0
     - multipledispatch >=0.4.9
 
 test:
