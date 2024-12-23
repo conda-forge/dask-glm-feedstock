@@ -8,22 +8,22 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3
+    - python {{ python_min }}
     - setuptools
     - setuptools_scm
     - pip
   run:
-    - python >=3
+    - python >={{ python_min }}
     - dask
     - scikit-learn >=0.18
     - scipy >=0.18.1
@@ -32,6 +32,8 @@ requirements:
     - numpy
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - dask_glm
     - dask_glm.estimators
